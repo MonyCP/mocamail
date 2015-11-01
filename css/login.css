@@ -1,0 +1,32 @@
+html{
+	margin: 0px;
+	padding: 0px;
+}
+header{
+	width:20%;
+}
+.loginbox{
+	border-radius: 4px;
+	margin: 5%;
+	padding-bottom: 40px;
+}
+.colors{
+	background-color: #4BA97E;
+	border-radius: 26px 26px 26px 26px;
+	margin: 2%;
+}
+.colors > h1 {
+	position: relative;
+	float: right;
+	margin:1%;
+}
+.colors > img{
+	float: left;
+}
+span{
+	margin-bottom:5%;
+  	font-size: 150%
+}
+boton{
+	margin-top: 50%;
+}
