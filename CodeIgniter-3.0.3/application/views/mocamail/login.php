@@ -19,7 +19,7 @@
 	<div class="row">
 		<div class="col-MD-6 col-SM-12 col-XS-12 col-LG-6">
 			<div class="jumbotron loginbox">
-				<from method="POST" name="flogin" id="flogin">
+				<from action="User/authenticate" method="POST" name="flogin" id="flogin">
 				<span>Login</span>
 				<br>
 				<label>Nombre de usuario:</label>
@@ -31,17 +31,19 @@
 		</div>
 		<div class="col-MD-6 col-SM-12 col-XS-12 col-LG-6">
 			<div class="jumbotron loginbox">
-				<from method="POST" name="flogin" id="flogin">
+				<from action="User/validation" method="POST" name="flogin" id="flogin">
 				<span>Registro</span>
 				<br>
 				<label>Nombre</label>
-				<input type="text" name="username" id="username" class="form-control">
+				<input type="text" name="name" id="name" class="form-control">
 				<label>Apellido</label>
-				<input type="text" name="username" id="username" class="form-control">
+				<input type="text" name="lastname" id="lastname" class="form-control">
 				<label>Nombre de usuario</label>
 				<input type="text" name="username" id="username" class="form-control">
+				<label>Email</label>
+				<input type="text" name="email" id="email" class="form-control">
 				<label>Contraseña</label>
-				<input type="text" name="password" id="password" class="form-control">
+				<input type="password" name="password" id="password" class="form-control">
 				<input type="submit" value="Conectarse" class="btn btn-success boton">
 			</div>
 		</div>
