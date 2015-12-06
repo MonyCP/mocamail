@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class User extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,15 +19,12 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
-		echo "Hola";
+		$this->load->view('mocamail/index');
 	}
 
-	function __construct()
-	{
-		/*$this->load->model('User_model', 'user');*/
-	}
-	
+	public function __construct() {
+        parent::__construct();
+    }
 	public function login()
 	{
 		$this->load->view('mocamail/mail');
@@ -35,15 +32,39 @@ class Welcome extends CI_Controller {
 
 	public function authenticate()
 	{
-		$this->load->model('User_model', 'user');
+		$username = $this->input->post("username");
+		$password = $this->input->post("password");
+		
+		// load the model and call the authenticate method
+		$this->load->model('User_model');
+		$result = $this->Session_model->user_authenticate($username, $password);
 
-		$this->user->authenticate($username, $password);
+		sleep(2);
+		// return 
+		if ($result && sizeof($result) > 0 ) {
+			//redirect a dashboard
+			//redirect(base_url('dashboard'));
+			header('Content-Type: application/json');
+    		echo json_encode( $result );
+		} else {
+			//cargar login con error
+			header('Content-Type: application/json');
+    		echo json_encode( array('status' => 'invalid', 'message' => 'User is invalid') );
+		}
 	}
 
-	public function validar()
-	{
-		$this->load->model('User_model', 'user');
+	public function registroDatos()
+	{	
 
-		$this->user->validar($name, $lastname,$username, $email, $password);
+		$name = $this->input->post('name', TRUE);
+ 		$lastname = $this->input->post('lastname', TRUE);
+ 		$username = $this->input->post('username', TRUE);
+ 		$email = $this->input->post('email', TRUE);
+ 		$password = $this->input->post('password', TRUE);
+ 		$rpassword = $this->input->post('rep-password',TRUE);
+		 	$insert = $this->User_model-> new_user($name." ".$lastname, $username, $email, $password);
+            $this->load->view('mocamail/confirmar_registro');
+        
+ 		
 	}
 }
